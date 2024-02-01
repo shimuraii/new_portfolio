@@ -10,6 +10,7 @@ import Preloader from './UI/Preloader.js'
 import InputController from './UI/InputController.js'
 import ModalManager from './UI/ModalManager.js'
 
+
 let instance = null
 
 export default class App{
@@ -41,5 +42,7 @@ export default class App{
         // extra utils
         this.loop = new Loop()
         this.resize = new Resize()
+
+        
     }
 }

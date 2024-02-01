@@ -11,7 +11,7 @@ export default class ModalContentProvider {
         },
         contactMe: {
           title: 'Contact Me',
-          description: "<h2> GitHub link: <a href='https://github.com/shimuraii' target='_blank'> Link </a><h2> LinkedIn link: <a href='https://www.linkedin.com/in/gkangshim/' target='_blank'> Link </a><h2> Resume link: <a href='' target='_blank'> Link </a>"
+          description: "<h2> GitHub link: <a href='https://github.com/shimuraii' target='_blank'> Link </a><h2> LinkedIn link: <a href='https://www.linkedin.com/in/gkangshim/' target='_blank'> Link </a><h2> Resume link: <a href='https://gustavokangshim.com/resume/web_resume_gkangshim.pdf' target='_blank'> Link </a>"
         },
         aboutMe: {
           title: 'About me',
