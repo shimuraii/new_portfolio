@@ -57,7 +57,7 @@ export default class CharacterController {
     this.characterController =
       this.physics.world.createCharacterController(0.01);
     this.characterController.setApplyImpulsesToDynamicBodies(true);
-    this.characterController.enableAutostep(1.5, 0.3, false);
+    this.characterController.enableAutostep(1, 0.3, false);
     this.characterController.enableSnapToGround(1);
   }
 
@@ -67,7 +67,7 @@ export default class CharacterController {
   loop() {
     // Initialize movement vector based on input values
     const movement = new THREE.Vector3();
-    if (this.forward) {
+    if (this.forward) {  // anything thats not 0 doesnt change speed
       movement.z -= 1;
     }
     if (this.backward) {
@@ -91,7 +91,7 @@ export default class CharacterController {
     }
 
     // Normalize and scale movement vector and set y component to -1
-    movement.normalize().multiplyScalar(0.1);
+    movement.normalize().multiplyScalar(0.04); // THIS IS WHERE YOU CHANGE THE SCALAR SPEED OF CHARACTER
     movement.y = -1;
 
     // Update collider movement and get new position of rigid body

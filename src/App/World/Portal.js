@@ -9,6 +9,19 @@ export default class Portal {
         this.modalInfo = modalInfo
         this.modalManager = new ModalManager()
 
+        this.portalNearMaterial = new THREE.MeshBasicMaterial({
+            color: 0xFFFFFF,
+            transparent: true,
+            opacity: 0.8,
+        })
+
+        this.portalFarMaterial = new THREE.MeshBasicMaterial({
+            color: 0x00FFFF,
+            transparent: true,
+            opacity: 0.8,
+        })
+
+        this.portalMesh.material = this.portalFarMaterial
 
         this.prevIsNear = false
 
@@ -25,12 +38,13 @@ export default class Portal {
             if (isNear) {
                 if (!this.prevIsNear){
                     this.modalManager.openModal(this.modalInfo.title, this.modalInfo.description)
-                    
+                    this.portalMesh.material = this.portalNearMaterial
                 }
                 this.prevIsNear = true
             } else {
                 if (this.prevIsNear) {
                     this.modalManager.closeModal()
+                    this.portalMesh.material = this.portalFarMaterial
                 }
                 this.prevIsNear = false
             }

@@ -45,8 +45,10 @@ export default class Preloader {
                 this.overlay.remove()
                 this.startButton.remove()
             }, 2000)
-
-
+            appStateStore.setState({nippleReady: true})
+            
+            
+              
 
         },{once: true})
     }
