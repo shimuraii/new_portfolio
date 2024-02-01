@@ -9,8 +9,12 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "tailwindcss": "^3.4.1",
     "vite": "^4.1.0"
+=======
+    "vite": "^4.5.2"
+>>>>>>> 178308975763e386002ee204aac7a6f897435e77
   },
   "dependencies": {
     "@dimforge/rapier3d": "^0.11.1",
