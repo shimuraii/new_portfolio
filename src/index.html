@@ -1,37 +1,21 @@
 <!DOCTYPE html>
-   
-<html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gustavo Kang Shim - 2D View</title>
+  </head>
+  <body>
+    <!-- ✅ Navigation Bar -->
+    <nav style="display: flex; gap: 1rem; padding: 1rem; background: #f5f5f5;">
+      <a href="/">Home</a>
+      <a href="/3DView">3D View</a>
+    </nav>
 
-<head>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-	<meta name="viewport" content="width=device-width"/>
-	<meta charset="utf-8">
-	<title>Gustavo Kang Shim - 3D Portfolio</title>
-	<link rel="stylesheet" href="./style.css">
-</head>
+    <!-- ✅ React App Mount Point -->
+    <div id="app"></div>
 
-<body>
-	<div id="space">
-		<canvas class="threejs"></canvas>
-	</div>
-	<script type="module" src="./index.js"></script>
-	<div class="overlay"></div>
-	<h1 class="loading">Loading Web Page... <span id="progressPercentage"></span>%</h1>
-
-	<button class="start">START</button>
-	
-	<div id="myModal" class="modal">
-		<div class="modal-wrapper">
-			<div class="modal-content">
-				<h1 id="modalTitle">Modal Title</h1>
-				<p id="modalDescription">Modal Description</p>
-			</div>
-			<span class="close">Close</span>
-		</div>
-	</div>
-
-</body>
-
+    <!-- ✅ Vite will inject your React script here -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
