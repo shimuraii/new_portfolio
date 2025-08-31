@@ -24,4 +24,4 @@ This will start the server and open your default browser to your localhost. The 
 
 ### When deploying to vercel...
 
-To prevent errors in the automatic build, the vite config file is set for the build (aka dist folder) to be built on the src folder. When deploying it (vercel, or whatever) the code needs to manually delete the dist folder in the root of the project and replace it with the newly generated dist in the src folder
+To prevent errors in the automatic build, the vite config file is set for the build (aka dist folder) to be built on the src folder. Use npm run build to generate the dist. When deploying it (vercel, or whatever) the code needs to manually delete the dist folder in the root of the project and replace it with the newly generated dist in the src folder
