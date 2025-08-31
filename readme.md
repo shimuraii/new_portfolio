@@ -1,6 +1,6 @@
 # Gustavo's 3D portfolio :)
 
-Welcome! I made this portfolio and I actively work on it for a while now. I will keep trying to work on it periodically but no promises. If there is an interest feel free to contact me, I'd love to chat about this project.
+Welcome! I made this portfolio and I actively work on it for a while now. I love ThreeJS and I will keep trying to work on it periodically but no promises. If there is an interest feel free to contact me, I'd love to chat about this project.
 
 # Starting this ThreeJS with Vite Starter Pack project Setup:
 ### Prerequisites
