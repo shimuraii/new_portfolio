@@ -168,13 +168,12 @@ html.dark header {
 header a,
 header button {
   color: inherit;
-  border-color: #d1d5db; /* neutral-300 */
+  border-color: #404040; /* neutral-700 */
   background-color: transparent;
 }
 
 html.dark header a,
 html.dark header button {
-  border-color: #404040; /* neutral-700 */
   background-color: transparent;
 }
 
