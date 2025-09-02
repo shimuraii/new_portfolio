@@ -1,22 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gustavo Kang Shim - 2D View</title>
-    <link href="./style.css" rel="stylesheet" type="text/css">
-  </head>
-  <body>
-    <!-- Navigation Bar -->
-    <nav style="display: flex; gap: 1rem; padding: 1rem; background: #f5f5f5;">
-      <a href="/">Home</a>
-      <a href="/3DView.html">3D View</a>
-    </nav>
+	<head>
+    <script type="module" src="./index.js"></script>
 
-    <div class="bg-green-500 text-white p-4">
-      ✅ If this box is green, Tailwind is now working!
-    </div>
-    
-    <h1 class="text-3xl font-bold underline">    Hello world!  </h1>
-  </body>
+		<meta name="viewport" content="width=device-width"/>
+		<meta charset="utf-8">
+		<meta name="color-scheme" content="light dark" />
+
+		<title>Gustavo Kang Shim - 3D Portfolio</title>
+
+		<script>
+			// Pre-paint theme and embed flag
+			(function(){
+			try {
+				if (new URLSearchParams(window.location.search).has('embed')) {
+				document.documentElement.classList.add('embed');
+				}
+				var stored = localStorage.getItem('theme');
+				var prefers = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+				var isDark = stored ? stored === 'dark' : prefers;
+				document.documentElement.classList.toggle('dark', isDark);
+			} catch(e) {}
+			})();
+		</script>
+
+		<style>
+			html.embed header { display: none; }
+		</style>
+		<link rel="stylesheet" href="./style.css">
+	</head>
+
+	<body>
+	<!-- Header / Nav -->
+		<header class="fixed top-0 inset-x-0 z-20 bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
+			<div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+
+			<a href="./index.html" class="flex items-center gap-3">
+				<!-- Profile figure -->
+				<span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-semibold">GKS</span>
+				<span class="font-medium tracking-tight">Gustavo Kang Shim</span>
+			</a>
+
+			<div class="flex items-center gap-2">
+				<button class="inline-flex items-center gap-2 rounded-full border border-neutral-300 dark:border-neutral-700 px-3 py-1.5 text-sm hover:bg-neutral-50 dark:hover:bg-neutral-900" aria-pressed="false" aria-label="Toggle dark mode">
+					<a href="./3DView.html">
+						3D View
+					</a>
+				</button>
+				<button id="theme-toggle" class="inline-flex items-center gap-2 rounded-full border border-neutral-300 dark:border-neutral-700 px-3 py-1.5 text-sm hover:bg-neutral-50 dark:hover:bg-neutral-900" aria-pressed="false" aria-label="Toggle dark mode">
+					<span class="sun">☀️</span>
+					<span class="moon hidden">🌙</span>
+					<span class="sr-only">Toggle theme</span>
+				</button>
+				<button id="mobile-menu-toggle" class="sm:hidden inline-flex items-center rounded-full border border-neutral-300 dark:border-neutral-700 px-3 py-1.5 text-sm hover:bg-neutral-50 dark:hover:bg-neutral-900" aria-expanded="false" aria-controls="mobile-menu">
+					Menu
+				</button>
+			</div>
+			</div>
+			<div id="mobile-menu" class="sm:hidden px-6 pb-4 hidden">
+				<div class="flex flex-col gap-2 text-sm">
+					<button>
+						<a href="./3DView.html" class="py-1">3D View</a>
+					</button>
+				</div>
+			</div>
+		</header>
+
+
+	</body>
 </html>

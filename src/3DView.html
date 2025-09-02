@@ -4,14 +4,13 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+		<script type="module" src="./3DView.js"></script>
 
 		<meta name="viewport" content="width=device-width"/>
 		<meta charset="utf-8">
 		<meta name="color-scheme" content="light dark" />
 
 		<title>Gustavo Kang Shim - 3D Portfolio</title>
-
-		
 
 		<script>
 			// Pre-paint theme and embed flag
@@ -46,6 +45,11 @@
 			</a>
 
 			<div class="flex items-center gap-2">
+				<button class="inline-flex items-center gap-2 rounded-full border border-neutral-300 dark:border-neutral-700 px-3 py-1.5 text-sm hover:bg-neutral-50 dark:hover:bg-neutral-900" aria-pressed="false" aria-label="Toggle dark mode">
+					<a href="./index.html">
+						2D View
+					</a>
+				</button>
 				<button id="theme-toggle" class="inline-flex items-center gap-2 rounded-full border border-neutral-300 dark:border-neutral-700 px-3 py-1.5 text-sm hover:bg-neutral-50 dark:hover:bg-neutral-900" aria-pressed="false" aria-label="Toggle dark mode">
 					<span class="sun">☀️</span>
 					<span class="moon hidden">🌙</span>
@@ -59,7 +63,7 @@
 			<div id="mobile-menu" class="sm:hidden px-6 pb-4 hidden">
 				<div class="flex flex-col gap-2 text-sm">
 					<button>
-						<a href="./index.html" class="py-1">Back to 2D</a>
+						<a href="./index.html" class="py-1">2D View</a>
 					</button>
 				</div>
 			</div>
@@ -69,7 +73,6 @@
 			<canvas class="threejs"></canvas>
 		</div>
 
-		<script type="module" src="./3DView.js"></script>
 		<div class="overlay"></div>
 		
 		<h1 class="loading fancy">Loading Web Page... <span id="progressPercentage"></span>%</h1>
