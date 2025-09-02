@@ -1,39 +1,33 @@
 <!DOCTYPE html>
-   
-<html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gustavo Kang Shim - 2D View</title>
+    <link rel="stylesheet" crossorigin href="./assets/index-CD-uw62R.css">
+  </head>
+  <body class="bg-neutral-50 text-neutral-900">
+    <!-- Navigation Bar -->
+    <header class="inset-x-0 bg-white border-b border-neutral-200">
+      <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+        <a href="./index.html" class="flex items-center gap-3">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900 text-white font-semibold">GK</span>
+          <span class="font-medium tracking-tight">Gustavo Kang Shim</span>
+        </a>
+        <nav class="flex items-center gap-3 text-sm">
+          <a href="./index.html" class="px-3 py-1.5">Home</a>
+          <a href="./3DView.html" class="inline-flex items-center gap-2 rounded-full border border-neutral-300 px-4 py-1.5 hover:bg-neutral-50">3D View</a>
+        </nav>
+      </div>
+    </header>
 
-<head>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-	<meta name="viewport" content="width=device-width"/>
-	<meta charset="utf-8">
-	<title>Gustavo Kang Shim - 3D Portfolio</title>
-	
-  <script type="module" crossorigin src="./assets/index-1a6389bb.js"></script>
-  <link rel="stylesheet" href="./assets/index-f1757778.css">
-</head>
-
-<body>
-	<div id="space">
-		<canvas class="threejs"></canvas>
-	</div>
-	
-	<div class="overlay"></div>
-	<h1 class="loading">Loading Web Page... <span id="progressPercentage"></span>%</h1>
-
-	<button class="start">START</button>
-	
-	<div id="myModal" class="modal">
-		<div class="modal-wrapper">
-			<div class="modal-content">
-				<h1 id="modalTitle">Modal Title</h1>
-				<p id="modalDescription">Modal Description</p>
-			</div>
-			<span class="close">Close</span>
-		</div>
-	</div>
-
-</body>
-
+    <main class="max-w-7xl mx-auto px-6 py-8 space-y-6">
+      <div class="bg-green-500 text-white p-4 rounded-md">
+        Tailwind check: If this box is green, Tailwind is working.
+      </div>
+      <h1 class="text-3xl font-bold">Hello world!</h1>
+      <p>Use the 3D View button in the header to open the interactive scene.</p>
+    </main>
+  </body>
 </html>
+
