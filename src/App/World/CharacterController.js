@@ -64,7 +64,13 @@ export default class CharacterController {
   /**
    * Loop function that updates the character's position and movement.
    */
-  loop() {
+  loop(deltaTime = 0) {
+    // Clamp delta to avoid huge steps
+    const dt = Math.max(0, Math.min(deltaTime || 0, 0.1));
+    // Movement speed in world units per second (was 0.04/frame ~ 2.4 u/s @60fps)
+    const SPEED = 4;
+    // Damping factor converted to dt-based alpha (0.1/frame ~= lambda 6.0)
+    const smoothAlpha = 1 - Math.exp(-6.0 * dt);
     // Initialize movement vector based on input values
     const movement = new THREE.Vector3();
     if (this.forward) {  // anything thats not 0 doesnt change speed
@@ -87,12 +93,15 @@ export default class CharacterController {
         new THREE.Vector3(0, 1, 0),
         angle
       );
-      this.character.quaternion.slerp(characterRotation, 0.1);
+      this.character.quaternion.slerp(characterRotation, smoothAlpha);
     }
 
-    // Normalize and scale movement vector and set y component to -1
-    movement.normalize().multiplyScalar(0.04); // THIS IS WHERE YOU CHANGE THE SCALAR SPEED OF CHARACTER
-    movement.y = -1;
+    // Normalize and scale by dt; apply gentle downward to stay grounded
+    if (movement.lengthSq() > 0) {
+      movement.normalize().multiplyScalar(SPEED * dt);
+    }
+    // Ensure controller remains grounded consistently across frame rates
+    movement.y = -3.5 * dt;
 
     // Update collider movement and get new position of rigid body
     this.characterController.computeColliderMovement(this.collider, movement);
@@ -102,6 +111,6 @@ export default class CharacterController {
 
     // Set next kinematic translation of rigid body and update character position
     this.rigidBody.setNextKinematicTranslation(newPosition);
-    this.character.position.lerp(this.rigidBody.translation(), 0.1);
+    this.character.position.lerp(this.rigidBody.translation(), smoothAlpha);
   }
 }

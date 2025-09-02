@@ -43,8 +43,10 @@ export default class Camera{
         })
     }
 
-    loop() {
+    loop(deltaTime = 0) {
         this.controls.update()
+        const dt = Math.max(0, Math.min(deltaTime || 0, 0.1));
+        const smoothAlpha = 1 - Math.exp(-6.0 * dt);
         this.characterController = this.app.world.characterController?.rigidBody
         if(this.characterController) {
 
@@ -60,8 +62,8 @@ export default class Camera{
             targetOffset.applyQuaternion(characterRotation)
             targetOffset.add(characterPosition)
 
-            this.instance.position.lerp(cameraOffset, 0.1)
-            this.controls.target.lerp(targetOffset, 0.1)
+            this.instance.position.lerp(cameraOffset, smoothAlpha)
+            this.controls.target.lerp(targetOffset, smoothAlpha)
         }
     }
 }

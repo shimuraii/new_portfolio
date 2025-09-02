@@ -15231,13 +15231,15 @@ void main() {
         this.instance.aspect = e.width / e.height, this.instance.updateProjectionMatrix();
       });
     }
-    loop() {
+    loop(e = 0) {
       var _a2;
-      if (this.controls.update(), this.characterController = (_a2 = this.app.world.characterController) == null ? void 0 : _a2.rigidBody, this.characterController) {
-        const e = this.characterController.translation(), t = this.characterController.rotation(), n = new k(0, 28, 35);
-        n.applyQuaternion(t), n.add(e);
-        const i = new k(0, 8, 0);
-        i.applyQuaternion(t), i.add(e), this.instance.position.lerp(n, 0.1), this.controls.target.lerp(i, 0.1);
+      this.controls.update();
+      const t = Math.max(0, Math.min(e || 0, 0.1)), n = 1 - Math.exp(-6 * t);
+      if (this.characterController = (_a2 = this.app.world.characterController) == null ? void 0 : _a2.rigidBody, this.characterController) {
+        const i = this.characterController.translation(), r = this.characterController.rotation(), l = new k(0, 28, 35);
+        l.applyQuaternion(r), l.add(i);
+        const c = new k(0, 8, 0);
+        c.applyQuaternion(r), c.add(i), this.instance.position.lerp(l, n), this.controls.target.lerp(c, n);
       }
     }
   }
@@ -21049,15 +21051,15 @@ void main() {
       const e = this.character.getWorldPosition(new k()), t = this.character.getWorldQuaternion(new Pt());
       this.rigidBody.setTranslation(e), this.rigidBody.setRotation(t), this.characterController = this.physics.world.createCharacterController(0.01), this.characterController.setApplyImpulsesToDynamicBodies(true), this.characterController.enableAutostep(1, 0.3, false), this.characterController.enableSnapToGround(1);
     }
-    loop() {
-      const e = new k();
-      if (this.forward && (e.z -= 1), this.backward && (e.z += 1), this.left && (e.x -= 1), this.right && (e.x += 1), e.length() !== 0) {
-        const n = Math.atan2(e.x, e.z) + Math.PI, i = new Pt().setFromAxisAngle(new k(0, 1, 0), n);
-        this.character.quaternion.slerp(i, 0.1);
+    loop(e = 0) {
+      const t = Math.max(0, Math.min(e || 0, 0.1)), n = 2.4, i = 1 - Math.exp(-6 * t), r = new k();
+      if (this.forward && (r.z -= 1), this.backward && (r.z += 1), this.left && (r.x -= 1), this.right && (r.x += 1), r.length() !== 0) {
+        const c = Math.atan2(r.x, r.z) + Math.PI, u = new Pt().setFromAxisAngle(new k(0, 1, 0), c);
+        this.character.quaternion.slerp(u, i);
       }
-      e.normalize().multiplyScalar(0.04), e.y = -1, this.characterController.computeColliderMovement(this.collider, e);
-      const t = new k().copy(this.rigidBody.translation()).add(this.characterController.computedMovement());
-      this.rigidBody.setNextKinematicTranslation(t), this.character.position.lerp(this.rigidBody.translation(), 0.1);
+      r.lengthSq() > 0 && r.normalize().multiplyScalar(n * t), r.y = -1 * t, this.characterController.computeColliderMovement(this.collider, r);
+      const l = new k().copy(this.rigidBody.translation()).add(this.characterController.computedMovement());
+      this.rigidBody.setNextKinematicTranslation(l), this.character.position.lerp(this.rigidBody.translation(), i);
     }
   }
   class ey {
@@ -21090,7 +21092,7 @@ void main() {
       this.loop();
     }
     loop(e, t) {
-      this.physics.loop(), this.environment && this.environment.loop(), this.characterController && this.characterController.loop(), this.animationController && this.animationController.loop(e);
+      this.physics.loop(), this.environment && this.environment.loop(), this.characterController && this.characterController.loop(e), this.animationController && this.animationController.loop(e);
     }
   }
   class ny {
