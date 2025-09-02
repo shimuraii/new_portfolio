@@ -34,7 +34,7 @@ export default class Physics {
    * @param {string} type - The rigid body type ("dynamic" or "fixed")
    * @param {string} collider - The collider type ("cuboid", "ball", or "trimesh")
    */
-  add(mesh, type, collider) {
+  add(mesh, type, collider, options = {}) {
     // defining the rigid body type
     let rigidBodyType;
     switch(type) {
@@ -49,9 +49,13 @@ export default class Physics {
       break;
     }
     this.rigidBody = this.world.createRigidBody(rigidBodyType);
+    // Optional rigid body tuning
+    if (options.linearDamping !== undefined) this.rigidBody.setLinearDamping(options.linearDamping);
+    if (options.angularDamping !== undefined) this.rigidBody.setAngularDamping(options.angularDamping);
 
     // defining the collider type
     let colliderType;
+    let createdCollider;
 
     switch (collider) {
       case "cuboid":
@@ -61,12 +65,12 @@ export default class Physics {
           dimensions.y / 2,
           dimensions.z / 2
         );
-        this.world.createCollider(colliderType, this.rigidBody);
+        createdCollider = this.world.createCollider(colliderType, this.rigidBody);
         break;
       case "ball":
         const radius = this.computeBallDimensions(mesh);
         colliderType = this.rapier.ColliderDesc.ball(radius);
-        this.world.createCollider(colliderType, this.rigidBody);
+        createdCollider = this.world.createCollider(colliderType, this.rigidBody);
         break;
       case "trimesh":
         const { scaledVertices, indices } = this.computeTrimeshDimensions(mesh);
@@ -74,9 +78,16 @@ export default class Physics {
           scaledVertices,
           indices
         );
-        this.world.createCollider(colliderType, this.rigidBody);
+        createdCollider = this.world.createCollider(colliderType, this.rigidBody);
 
         break;
+    }
+
+    // Optional collider tuning
+    if (createdCollider) {
+      if (options.sensor) createdCollider.setSensor(true);
+      if (options.restitution !== undefined) createdCollider.setRestitution(options.restitution);
+      if (options.friction !== undefined) createdCollider.setFriction(options.friction);
     }
 
     // setting the rigid body position and rotation
@@ -124,8 +135,24 @@ Computes the radius of a sphere collider for a given mesh
   @returns {{scaledVertices: number[], indices: number[]}} The scaled vertices and indices of the trimesh collider
   */
   computeTrimeshDimensions(mesh) {
-    const vertices = mesh.geometry.attributes.position.array;
-    const indices = mesh.geometry.index.array;
+    const posAttr = mesh.geometry.attributes?.position;
+    if (!posAttr) {
+      return { scaledVertices: [], indices: [] };
+    }
+    const vertices = posAttr.array;
+    let indices;
+    if (mesh.geometry.index && mesh.geometry.index.array) {
+      indices = mesh.geometry.index.array;
+    } else {
+      // Generate sequential indices for non-indexed geometry
+      const count = posAttr.count;
+      indices = new (vertices.constructor === Float32Array ? Uint32Array : Array)(count);
+      if (indices instanceof Uint32Array) {
+        for (let i = 0; i < count; i++) indices[i] = i;
+      } else {
+        indices = Array.from({ length: count }, (_, i) => i);
+      }
+    }
     const worldScale = mesh.getWorldScale(new THREE.Vector3());
     const scaledVertices = vertices.map((vertex, index) => {
       return vertex * worldScale.getComponent(index % 3);
