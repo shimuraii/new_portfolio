@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+		<meta name="viewport" content="width=device-width"/>
+		<meta charset="utf-8">
+		<meta name="color-scheme" content="light dark" />
+
+		<title>Gustavo Kang Shim - 3D Portfolio</title>
+
+		<script>
+			// Pre-paint theme and embed flag
+			(function(){
+			try {
+				if (new URLSearchParams(window.location.search).has('embed')) {
+				document.documentElement.classList.add('embed');
+				}
+				var stored = localStorage.getItem('theme');
+				var prefers = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+				var isDark = stored ? stored === 'dark' : prefers;
+				document.documentElement.classList.toggle('dark', isDark);
+			} catch(e) {}
+			})();
+		</script>
+
+		<style>
+			html.embed header { display: none; }
+		</style>
+		<script type="module" crossorigin src="./assets/view3d-rLM_PwHa.js"></script>
+		<link rel="modulepreload" crossorigin href="./assets/App-wqv4yKSk.js">
+		<link rel="stylesheet" crossorigin href="./assets/App-DgU-ZN9Z.css">
+	</head>
+
+	<body class="no-scroll">
+	<!-- Header / Nav -->
+		<header class="fixed top-0 inset-x-0 z-20 bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
+			<div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+
+				<a href="./index.html" class="flex items-center gap-3 min-w-0">
+					<!-- Profile figure -->
+					<span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-semibold">GKS</span>
+					<span class="font-medium tracking-tight site-name">Gustavo Kang Shim</span>
+				</a>
+
+				<div class="flex items-center gap-2">
+					<button class="inline-flex items-center gap-2 rounded-full border border-neutral-300 dark:border-neutral-700 px-3 py-1.5 text-sm hover:bg-neutral-50 dark:hover:bg-neutral-900" aria-pressed="false" aria-label="Toggle dark mode">
+						<a href="./index.html">
+							2D View
+						</a>
+					</button>
+					<button id="theme-toggle" class="inline-flex items-center gap-2 rounded-full border border-neutral-300 dark:border-neutral-700 px-3 py-1.5 text-sm hover:bg-neutral-50 dark:hover:bg-neutral-900" aria-pressed="false" aria-label="Toggle dark mode">
+						<span class="sun">☀️</span>
+						<span class="moon hidden">🌙</span>
+						<span class="sr-only">Toggle theme</span>
+					</button>
+				</div>
+				
+			</div>
+		</header>
+
+		<div id="space">
+			<canvas class="threejs"></canvas>
+		</div>
+
+		<div class="overlay"></div>
+		
+		<h1 class="loading fancy">Loading Web Page... <span id="progressPercentage"></span>%</h1>
+
+		<button class="start fancy">START</button>
+
+		<div id="popup" class="popup h-28 w-40 border-red-700 border-2" role="status" aria-live="polite">
+			<span class="font-medium">Objective: Go through the portals and explore the world!</span>
+		</div>
+		
+		<div id="myModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+			<div class="modal-wrapper">
+				<div class="modal-content">
+					<button class="close" aria-label="Close modal">Close</button>
+					<h1 id="modalTitle">Modal Title</h1>
+					<p id="modalDescription">Modal Description</p>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>
