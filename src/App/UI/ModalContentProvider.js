@@ -76,7 +76,7 @@ export default class ModalContentProvider {
                   <span class="contact-value">/in/gkangshim</span>
                 </span>
               </a>
-              <a class="contact-card" href="" target="_blank" rel="noreferrer noopener" aria-label="Open resume PDF">
+              <a class="contact-card" href="https://linktr.ee/gkangshim" target="_blank" rel="noreferrer noopener" aria-label="Open resume PDF">
                 <span class="contact-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Zm0 0v6h6"/><path d="M16 13H8m8 4H8M9 9h1" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
                 </span>
