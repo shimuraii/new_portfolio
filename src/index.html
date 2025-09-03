@@ -27,8 +27,6 @@
 
 		<style>
 			html.embed header { display: none; }
-			/* Allow scrolling on 2D page */
-			body { overflow: auto; }
 		</style>
 		<link rel="stylesheet" href="./style.css">
 	</head>
@@ -38,10 +36,10 @@
 		<header class="fixed top-0 inset-x-0 z-20 bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
 			<div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
 
-				<a href="./index.html" class="flex items-center gap-3">
+				<a href="./index.html" class="flex items-center gap-3 min-w-0">
 					<!-- Profile figure -->
 					<span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-semibold">GKS</span>
-					<span class="font-medium tracking-tight">Gustavo Kang Shim</span>
+					<span class="font-medium tracking-tight site-name">Gustavo Kang Shim</span>
 				</a>
 
 				<div class="flex items-center gap-2">
@@ -60,16 +58,27 @@
 			</div>
 		</header>
 
-		<main class="pt-24 pb-20">
+		<main class="pt-28 sm:pt-24 pb-20">
 			<div class="max-w-5xl mx-auto px-6">
 				<!-- Hero / Portrait -->
 				<section class="about-layout mb-10">
-					<div class="about-portrait" style="position: relative; overflow: hidden;">
-						<canvas id="avatarPortrait" width="300" height="300" style="position:absolute; inset:0; width:100%; height:100%; border-radius:9999px;"></canvas>
+					<div>
+						<div class="about-portrait" style="position: relative; overflow: hidden;">
+							<canvas id="avatarPortrait" width="300" height="300" style="position:absolute; inset:0; width:100%; height:100%; border-radius:9999px;"></canvas>
+						</div>
+					<h1 class="hero-name pt-4">Gustavo Kang Shim</h1>
+						<p class="opacity-70">Software Developer</p>
 					</div>
+					
 					<div class="about-body">
-						<h1 style="margin:0 0 8px 0; font-size:28px; font-weight:600;">Hello! Let’s connect</h1>
-						<p style="margin:0; line-height:1.6;">I’m Gustavo — I build interactive web experiences and enjoy blending design with engineering. Explore some projects below and feel free to reach out.</p>
+						<p>I’m a developer passionate about crafting accessible, pixel-perfect user interfaces that blend thoughtful design with robust engineering. I love working at the intersection of design and development, creating experiences that not only look great but are meticulously built for performance, usability, and inclusivity.</p>
+
+						<p>Currently, I’m pursuing my <strong>Bachelor of Computing Science</strong> at <strong>Thompson Rivers University</strong>, where I’ve been recognized on the Dean’s List multiple times and contribute to the campus tech community as the <strong>Vice President of the TRUSU Club</strong> and <strong>Web Admin</strong> for the TRUSU Computer Science Club. I recently completed a <strong>Software Developer Co-op</strong> at <strong>Raptor Integration</strong>, building and optimizing web applications with <strong>Blazor</strong>, <strong>C#</strong>, <strong>Tailwind CSS</strong>, <strong>SQL</strong>, and <strong>Git</strong>, improving usability and data efficiency by <strong>50%</strong>.</p>
+
+						<p>I’ve worked on a range of projects—from developing market-level features for the Computer Science Club’s website to creating immersive portfolio animations with <strong>Three.js</strong>, and leading a team on an IoT workplace safety monitoring system powered by <strong>AWS</strong>. I also bring experience as a <strong>Research Assistant</strong>, analyzing large datasets in <strong>RStudio</strong> with machine learning techniques to deliver actionable insights.</p>
+
+						<p>When I’m not coding, you’ll find me climbing, reading, experimenting with new tech, or tinkering on creative side projects.</p>
+
 					</div>
 				</section>
 
