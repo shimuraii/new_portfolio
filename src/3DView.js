@@ -61,6 +61,13 @@ window.addEventListener('DOMContentLoaded', () => {
     const isDark = !document.documentElement.classList.contains('dark');
     applyTheme(isDark);
     setStoredTheme(isDark ? 'dark' : 'light');
+
+    // Show a small tailwind toast for "player objectives"
+    const popup = document.getElementById('popup');
+    if (popup) {
+      popup.classList.add('show');
+      window.setTimeout(() => popup.classList.remove('show'), 6000);
+    }
   };
   const desktop = document.getElementById('theme-toggle');
   const mobile = document.getElementById('theme-toggle-mobile');

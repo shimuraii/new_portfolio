@@ -9,6 +9,7 @@ export default class Preloader {
         this.overlay = document.querySelector('.overlay')
         this.loading = document.querySelector('.loading')
         this.startButton = document.querySelector('.start')
+        this.popup = document.querySelector('#popup')
 
         this.assetStore.subscribe((state) =>{
 
@@ -37,7 +38,6 @@ export default class Preloader {
         this.startButton.classList.add('fadeIn')
 
         this.startButton.addEventListener('click', () => {
-            console.log('started')
             this.overlay.classList.add('fade')
             this.startButton.classList.add('fadeOut')
 
@@ -45,11 +45,13 @@ export default class Preloader {
                 this.overlay.remove()
                 this.startButton.remove()
             }, 2000)
+
+            // Briefly show the toast once the scene starts
+            this.popup.classList.add('show')
+            window.setTimeout(() => this.popup.classList.remove('show'), 6000)
+
             appStateStore.setState({nippleReady: true})
             
-            
-              
-
         },{once: true})
     }
 }

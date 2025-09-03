@@ -198,6 +198,43 @@ html.dark header a > span.h-10.w-10.rounded-full {
   color: #111827; /* neutral-900 */
 }
 
+/* Tailwind-styled toast popup used in 3D view */
+.popup {
+  /* base hidden state */
+  @apply fixed z-50 top-20 right-4 px-3 py-2 rounded-lg shadow-lg text-sm select-none;
+  @apply opacity-0 pointer-events-none transition ease-out duration-300 translate-y-2;
+  @apply bg-neutral-900 text-neutral-100;
+}
+.popup.dark {
+    /* base hidden state */
+  @apply fixed z-50 top-20 right-4 px-3 py-2 rounded-lg shadow-lg text-sm select-none;
+  @apply opacity-0 pointer-events-none transition ease-out duration-300 translate-y-2;
+  @apply bg-white text-neutral-900;
+}
+
+.popup.show {
+  @apply opacity-100 pointer-events-auto translate-y-0;
+}
+
+/* Make popup larger on non-mobile screens */
+@media (min-width: 640px) { /* sm */
+  .popup {
+    /* increase readability on small desktops/tablets */
+    font-size: 1rem; /* text-base */
+    padding: 0.75rem 1rem; /* px-4 py-3 approximate */
+    width: 16rem; /* ~w-64; override w-40 */
+    height: 7rem; /* override fixed h-14 from HTML on larger screens */
+  }
+}
+
+@media (min-width: 768px) { /* md */
+  .popup {
+    font-size: 1.125rem; /* text-lg */
+    padding: 1rem 1.25rem; /* px-5 py-4 approximate */
+    width: 20rem; /* ~w-80 */
+  }
+}
+
 .close {
     display: inline-block;
     width: 120px;
@@ -235,4 +272,48 @@ html.dark header a > span.h-10.w-10.rounded-full {
 
 .modal p {
     font-weight: 300;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.show {
+  visibility: visible;
+  position: fixed;
+  bottom: 0;
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
 }
