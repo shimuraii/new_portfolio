@@ -1,9 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+@import "tailwindcss";
+
+/* Ensure native UI follows theme and icons can hide even before Tailwind loads */
+html { color-scheme: light; }
+html.dark { color-scheme: dark; }
+.hidden { display: none !important; }
 
 body {
     margin: 0;
+}
+
+/* Only disable scrolling when explicitly requested */
+body.no-scroll {
     overflow: hidden;
+}
+
+/* Keep the site name on a single line and scale on small screens */
+.site-name {
+    white-space: nowrap;
+    font-size: clamp(0.95rem, 3.6vw, 1rem);
+}
+
+/* Hero name in 2D view: keep on one line and scale down on small screens */
+.hero-name {
+    margin: 0 0 8px 0;
+    font-weight: 600;
+    white-space: nowrap;
+    font-size: clamp(18px, 6vw, 28px);
+    line-height: 1.2;
+}
+
+.fancy{
     font-family: 'Amatic SC', cursive;
 }
 
@@ -76,7 +104,10 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.0);
+    /* Dim backdrop with slight blur */
+    background-color: rgba(17, 24, 39, 0.6);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
     overflow: auto;
     opacity: 0;
     transition: opacity 0.6s ease;
@@ -94,20 +125,20 @@ body {
 
 .modal-wrapper {
     position: relative;
-    width: 50%;
+    width: min(92%, 900px);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align: center;
+    text-align: left;
 }
 @media only screen and (max-width: 600px){
     .modal-wrapper {
         position: relative;
-        width: 80%;
+        width: 92%;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -30%);
-        text-align: center;
+        transform: translate(-50%, -40%);
+        text-align: left;
     }
     .modal h1 {
         font-size: 30px;
@@ -115,40 +146,161 @@ body {
     }
 }
 .modal-content {
-    background-color: white;
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.9);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    padding: 24px 24px 28px;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
     font-family: 'Poppins', sans-serif;
     margin: 0 auto;
-    color: black;
-    /* Set text color to white within the modal */
+    color: #0a0a0a;
+    border: 1px solid rgba(0,0,0,0.06);
+    /* Content entrance animation */
+    transform: translateY(8px) scale(0.98);
+    opacity: 0;
+    transition: transform .35s ease, opacity .35s ease, box-shadow .3s ease;
+    max-height: min(72vh, 820px);
+    overflow-y: auto;
 }
 
+.modal.fadeIn .modal-content {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+/* Dark mode adaptations */
+html.dark .modal-content {
+    background-color: rgba(10,10,10,0.9);
+    color: #e5e7eb;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.65);
+    border-color: rgba(255,255,255,0.08);
+}
+
+html.dark .close {
+    background-color: rgba(255,255,255,0.08);
+    color: #e5e7eb;
+}
+html.dark .close:hover,
+html.dark .close:focus {
+    background-color: rgba(255,255,255,0.15);
+}
+
+/* Header / Nav theming (ensure whole navbar adapts) */
+header {
+  background-color: #ffffff; /* light bg */
+  border-bottom: 1px solid #e5e7eb; /* neutral-200 */
+  color: #111827; /* neutral-900 */
+}
+
+html.dark header {
+  background-color: #0a0a0a; /* neutral-950 */
+  border-bottom-color: #262626; /* neutral-800 */
+  color: #e5e7eb; /* neutral-200 */
+}
+
+/* Buttons and links within the header */
+header a,
+header button {
+  color: inherit;
+  border-color: #404040; /* neutral-700 */
+  background-color: transparent;
+}
+
+html.dark header a,
+html.dark header button {
+  background-color: transparent;
+}
+
+header a:hover,
+header button:hover {
+  background-color: #fafafa; /* neutral-50 */
+}
+
+html.dark header a:hover,
+html.dark header button:hover {
+  background-color: #171717; /* neutral-900 */
+}
+
+/* Brand initials circle (GK) specifically */
+header a > span.h-10.w-10.rounded-full {
+  background-color: #111827; /* neutral-900 */
+  color: #ffffff;
+}
+
+html.dark header a > span.h-10.w-10.rounded-full {
+  background-color: #f5f5f5; /* neutral-100 */
+  color: #111827; /* neutral-900 */
+}
+
+/* Tailwind-styled toast popup used in 3D view */
+.popup {
+  /* base hidden state */
+  @apply fixed z-50 top-20 right-4 px-3 py-2 rounded-lg shadow-lg text-sm select-none;
+  @apply opacity-0 pointer-events-none transition ease-out duration-300 translate-y-2;
+  @apply bg-neutral-900 text-neutral-100;
+}
+.popup.dark {
+    /* base hidden state */
+  @apply fixed z-50 top-20 right-4 px-3 py-2 rounded-lg shadow-lg text-sm select-none;
+  @apply opacity-0 pointer-events-none transition ease-out duration-300 translate-y-2;
+  @apply bg-white text-neutral-900;
+}
+
+.popup.show {
+  @apply opacity-100 pointer-events-auto translate-y-0;
+}
+
+/* Make popup larger on non-mobile screens */
+@media (min-width: 640px) { /* sm */
+  .popup {
+    /* increase readability on small desktops/tablets */
+    font-size: 1rem; /* text-base */
+    padding: 0.75rem 1rem; /* px-4 py-3 approximate */
+    width: 16rem; /* ~w-64; override w-40 */
+    height: 7rem; /* override fixed h-14 from HTML on larger screens */
+  }
+}
+
+@media (min-width: 768px) { /* md */
+  .popup {
+    font-size: 1.125rem; /* text-lg */
+    padding: 1rem 1.25rem; /* px-5 py-4 approximate */
+    width: 20rem; /* ~w-80 */
+  }
+}
+
+/* Close button inside modal */
 .close {
-    display: inline-block;
-    width: 120px;
-    height: 40px;
-    line-height: 40px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    min-width: 80px;
+    padding: 0 14px;
+    line-height: 1;
     text-align: center;
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    color: #fff;
-    /* Set the color of the button text to white */
-    font-size: 20px;
-    font-weight: bold;
-    transition: 0.6s all;
+    border-radius: 9999px;
+    background-color: rgba(17, 24, 39, 0.06);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    color: #0b0f19;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color .25s ease, box-shadow .25s ease;
     cursor: pointer;
-    text-transform: uppercase;
+    text-transform: none;
     font-family: 'Poppins', sans-serif;
-    margin-top: 20px;
+    border: 1px solid rgba(0,0,0,0.06);
 }
 
 .close:hover,
 .close:focus {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(17, 24, 39, 0.10);
 }
 
 .modal h1,
@@ -157,10 +309,185 @@ body {
 }
 
 .modal h1 {
-    font-size: 30px;
-    font-weight: 500;
+    font-size: 32px;
+    font-weight: 600;
 }
 
 .modal p {
     font-weight: 300;
 }
+
+/* Typography + links inside the modal body */
+.modal-content h2 { font-size: 18px; font-weight: 600; margin: 12px 0 6px; }
+.modal-content a { color: #2563eb; text-decoration: none; font-weight: 500; }
+.modal-content a:hover { text-decoration: underline; }
+
+/* Optional: responsive projects layout within modal */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+@media (min-width: 640px) {
+  .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+}
+
+@media (min-width: 1024px) {
+  .projects-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.project-card {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.10);
+  border-color: rgba(0,0,0,0.10);
+}
+
+.project-thumb { width: 100%; aspect-ratio: 16/9; background: #f3f4f6; overflow: hidden; }
+.project-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.project-body { padding: 14px 14px 16px; }
+.project-card h3 { margin: 0 0 6px 0; font-size: 16px; font-weight: 600; }
+.project-card p { margin: 0 0 12px 0; color: #4b5563; font-size: 14px; }
+
+.project-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+.project-tag { font-size: 12px; padding: 4px 8px; border-radius: 9999px; background: #f3f4f6; color: #374151; }
+
+.project-actions { display: flex; gap: 10px; margin-top: 10px; }
+.project-actions a, .project-actions button {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 36px; padding: 0 14px; border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.06); background: #0f172a; color: #ffffff;
+  font-size: 14px; font-weight: 600; text-decoration: none;
+}
+.project-actions a:hover, .project-actions button:hover { background: #111827; }
+
+html.dark .project-card {
+  background: rgba(12,12,12,0.9);
+  border-color: rgba(255,255,255,0.08);
+  box-shadow: 0 8px 26px rgba(0,0,0,0.45);
+}
+html.dark .project-card p { color: #9ca3af; }
+html.dark .project-tag { background: #1f2937; color: #e5e7eb; }
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.show {
+  visibility: visible;
+  position: fixed;
+  bottom: 0;
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+/* Contact cards */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+@media (min-width: 520px) {
+  .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 860px) {
+  .contact-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #0b0f19;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.contact-card:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(0,0,0,0.10); border-color: rgba(0,0,0,0.10); }
+.contact-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 9999px; background: #f3f4f6; color: #111827; }
+.contact-text { display: flex; flex-direction: column; line-height: 1.1; }
+.contact-label { font-weight: 600; font-size: 14px; }
+.contact-value { font-size: 12px; color: #4b5563; }
+
+html.dark .contact-card { background: rgba(12,12,12,0.9); color: #e5e7eb; border-color: rgba(255,255,255,0.08); box-shadow: 0 8px 22px rgba(0,0,0,0.45); }
+html.dark .contact-icon { background: #1f2937; color: #e5e7eb; }
+html.dark .contact-value { color: #9ca3af; }
+
+/* About layout */
+.about-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px; /* more space between portrait and body */
+  align-items: center;
+}
+@media (min-width: 640px) { .about-layout { grid-template-columns: 200px 1fr; gap: 10rem; } }
+@media (max-width: 639px) { .about-layout { grid-template-columns: 1fr; text-align: left; gap: 20px; } .about-portrait { margin: 0 auto; } }
+
+.about-portrait {
+  width: 300px;
+  height: 300px;
+  border-radius: 9999px;
+  background: radial-gradient(120px 120px at 35% 35%, #06b6d4, #0ea5e9 60%, #1f2937);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-weight: 700; font-size: 36px; letter-spacing: 1px;
+  border: 2px solid rgba(255,255,255,0.2);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+}
+html.dark .about-portrait { border-color: rgba(255,255,255,0.18); box-shadow: 0 18px 56px rgba(0,0,0,0.45); }
+
+.about-body p { 
+    margin: 0 0 10px 0; 
+    line-height: 1.6;
+}
+.about-list { margin: 10px 0 0 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.about-list li { position: relative; padding-left: 18px; }
+.about-list li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 9999px; background: #06b6d4; }
+html.dark .about-list li::before { background: #38bdf8; }
