@@ -114,10 +114,10 @@ export default class Physics {
   }
 
   /**
-   * Computes the radius of a
+   * Computes the radius of a sphere collider for a given mesh
    /**
 
-Computes the radius of a sphere collider for a given mesh
+
 @param {THREE.Mesh} mesh - The mesh to compute the radius for
 @returns {number} The radius of the sphere collider
 */

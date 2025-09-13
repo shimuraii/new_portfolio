@@ -1,4 +1,4 @@
-import { A as c } from "./App-wqv4yKSk.js";
+import { A as c } from "./App-fS0Hx6k_.js";
 new c();
 function i() {
   try {
