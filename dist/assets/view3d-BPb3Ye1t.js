@@ -1,5 +1,5 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./App-wqv4yKSk.js","./App-DgU-ZN9Z.css"])))=>i.map(i=>d[i]);
-import { A as C, _ as g, __tla as __tla_0 } from "./App-wqv4yKSk.js";
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./App-C_nmQWl7.js","./App-BVHiPaSC.css"])))=>i.map(i=>d[i]);
+import { A as C, _ as g, __tla as __tla_0 } from "./App-C_nmQWl7.js";
 Promise.all([
   (() => {
     try {
@@ -60,15 +60,15 @@ Promise.all([
     const e = document.getElementById("avatarPortrait");
     if (!e) return;
     const [{ WebGLRenderer: t, Scene: n, PerspectiveCamera: i, Color: u, sRGBEncoding: _, ACESFilmicToneMapping: M, AmbientLight: A, DirectionalLight: D, Box3: P, Vector3: f }, { GLTFLoader: x }, { DRACOLoader: I }] = await Promise.all([
-      g(() => import("./App-wqv4yKSk.js").then(async (m) => {
+      g(() => import("./App-C_nmQWl7.js").then(async (m) => {
         await m.__tla;
         return m;
       }).then((o) => o.t), __vite__mapDeps([0,1]), import.meta.url),
-      g(() => import("./App-wqv4yKSk.js").then(async (m) => {
+      g(() => import("./App-C_nmQWl7.js").then(async (m) => {
         await m.__tla;
         return m;
       }).then((o) => o.G), __vite__mapDeps([0,1]), import.meta.url),
-      g(() => import("./App-wqv4yKSk.js").then(async (m) => {
+      g(() => import("./App-C_nmQWl7.js").then(async (m) => {
         await m.__tla;
         return m;
       }).then((o) => o.D), __vite__mapDeps([0,1]), import.meta.url)

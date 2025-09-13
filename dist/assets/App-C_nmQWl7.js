@@ -26057,15 +26057,6 @@ void main() {
                   <span class="contact-value">/in/gkangshim</span>
                 </span>
               </a>
-              <a class="contact-card" href="https://linktr.ee/gkangshim" target="_blank" rel="noreferrer noopener" aria-label="Open resume PDF">
-                <span class="contact-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Zm0 0v6h6"/><path d="M16 13H8m8 4H8M9 9h1" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
-                </span>
-                <span class="contact-text">
-                  <span class="contact-label">Resume</span>
-                  <span class="contact-value">PDF</span>
-                </span>
-              </a>
             </div>
           `
         },
@@ -26073,15 +26064,22 @@ void main() {
           title: "About Me",
           description: `
             <div class="about-layout">
-              <div class="about-portrait" aria-hidden="true">GKS</div>
+              <div>
+                <h1 class="hero-name pt-4">Gustavo Kang Shim</h1>
+                <p class="opacity-70">Software Developer</p>
+              </div>
               <div class="about-body">
-                <p>
-                  I\u2019m Gustavo Kang Shim \u2014 born and raised in Brazil with Korean roots. I\u2019m a 4th\u2011year Computer Science student at TRU, passionate about Web Development, Three.js, Software Development and bringing playful, interactive ideas to life. When I\u2019m not building, I\u2019m likely out going to the gym or exploring tech that blends design and engineering.
-                </p>
+                <p>I'm a Software Developer / Software Engineer. Previously @ Raptor Integration</p>
+
+                <p>Currently, I\u2019m pursuing my <strong>Bachelor of Computing Science</strong> at <strong>Thompson Rivers University</strong>.</p>
+
+                <p>I\u2019ve worked on a range of projects, with a focus on <strong>Web Development</strong>. But also interested in many areas of Software.</p>
+
+                <p>Currently trying to improve as a person and as a developer.</p>
                 <ul class="about-list">
-                  <li>Brazil \u2192 Canada journey; bilingual background</li>
-                  <li>Enjoys Soccer, Gym, Rock Climbing, Volleyball, Videogames</li>
-                  <li>Focus on polished Software Development</li>
+                  <li>Brazil \u2192 Canada journey</li>
+                  <li>Enjoys Videogames, Gym, Soccer</li>
+                  <li>Focus on building Software</li>
                 </ul>
               </div>
             </div>

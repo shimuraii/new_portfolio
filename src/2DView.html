@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <script type="module" src="./index.js"></script>
+    <script type="module" src="./2DView.js"></script>
+
+		<meta name="viewport" content="width=device-width"/>
+		<meta charset="utf-8">
+		<meta name="color-scheme" content="light dark" />
+
+		<title>Gustavo Kang Shim - 3D Portfolio</title>
+
+		<script>
+			// Pre-paint theme and embed flag
+			(function(){
+			try {
+				if (new URLSearchParams(window.location.search).has('embed')) {
+				document.documentElement.classList.add('embed');
+				}
+				var stored = localStorage.getItem('theme');
+				var prefers = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+				var isDark = stored ? stored === 'dark' : prefers;
+				document.documentElement.classList.toggle('dark', isDark);
+			} catch(e) {}
+			})();
+		</script>
+
+		<style>
+			html.embed header { display: none; }
+		</style>
+		<link rel="stylesheet" href="./style.css">
+	</head>
+
+	<body>
+	<!-- Header / Nav -->
+		<header class="fixed top-0 inset-x-0 z-20 bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
+			<div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+
+				<a href="./index.html" class="flex items-center gap-3 min-w-0">
+					<!-- Profile figure -->
+					<span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-semibold">GKS</span>
+					<span class="font-medium tracking-tight site-name">Gustavo Kang Shim</span>
+				</a>
+
+				<div class="flex items-center gap-2">
+					<button class="inline-flex items-center gap-2 rounded-full border border-neutral-300 dark:border-neutral-700 px-3 py-1.5 text-sm hover:bg-neutral-50 dark:hover:bg-neutral-900" aria-pressed="false" aria-label="Toggle dark mode">
+						<a href="./index.html">
+							3D View
+						</a>
+					</button>
+					<button id="theme-toggle" class="inline-flex items-center gap-2 rounded-full border border-neutral-300 dark:border-neutral-700 px-3 py-1.5 text-sm hover:bg-neutral-50 dark:hover:bg-neutral-900" aria-pressed="false" aria-label="Toggle dark mode">
+						<span class="sun">☀️</span>
+						<span class="moon hidden">🌙</span>
+						<span class="sr-only">Toggle theme</span>
+					</button>
+				</div>
+
+			</div>
+		</header>
+
+		<main class="pt-28 sm:pt-24 pb-20">
+			<div class="max-w-5xl mx-auto px-6">
+				<!-- Hero / Portrait -->
+				<section class="about-layout mb-10">
+					<div>
+						<h1 class="hero-name pt-4">Gustavo Kang Shim</h1>
+						<h3 class="opacity-70">Software Developer</h3>
+					</div>
+					
+					<div class="about-body">
+						<p>I'm a Software Developer / Software Engineer. Previously @ Raptor Integration</p>
+
+						<p>Currently, I’m pursuing my <strong>Bachelor of Computing Science</strong> at <strong>Thompson Rivers University</strong>.</p>
+
+						<p>I’ve worked on a range of projects, with a focus on <strong>Web Development</strong>. But also interested in many areas of Software.</p>
+
+						<p>Currently trying to improve as a person and as a developer.</p>
+
+					</div>
+				</section>
+
+				<!-- Contact -->
+				<section>
+					<div style="padding:20px 20px 22px;">
+						<div class="contact-grid">
+							<a class="contact-card" href="https://github.com/shimuraii" target="_blank" rel="noreferrer noopener" aria-label="Open GitHub profile">
+								<span class="contact-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.55v-2.1c-3.2.7-3.88-1.37-3.88-1.37-.53-1.35-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.35.96.1-.76.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.71 0-1.26.45-2.28 1.2-3.08-.12-.29-.52-1.45.11-3.02 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.82 0c2.22-1.49 3.2-1.18 3.2-1.18.63 1.57.23 2.73.11 3.02.75.8 1.2 1.82 1.2 3.08 0 4.44-2.69 5.41-5.25 5.7.41.35.77 1.04.77 2.11v3.13c0 .31.21.67.8.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
+								</span>
+								<span class="contact-text">
+									<span class="contact-label">GitHub</span>
+									<span class="contact-value">@shimuraii</span>
+								</span>
+							</a>
+							<a class="contact-card" href="https://www.linkedin.com/in/gkangshim/" target="_blank" rel="noreferrer noopener" aria-label="Open LinkedIn profile">
+								<span class="contact-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8.5h4V24h-4V8.5zM8.5 8.5h3.83v2.11h.05c.53-1 1.83-2.05 3.78-2.05 4.04 0 4.79 2.66 4.79 6.12V24h-4v-6.76c0-1.61-.03-3.68-2.24-3.68-2.24 0-2.58 1.75-2.58 3.56V24h-4V8.5z"/></svg>
+								</span>
+								<span class="contact-text">
+									<span class="contact-label">LinkedIn</span>
+									<span class="contact-value">/in/gkangshim</span>
+								</span>
+							</a>
+							<a class="contact-card" href="https://codepen.io/yourusername" target="_blank" rel="noreferrer noopener" aria-label="Open CodePen profile">
+								<span class="contact-icon" aria-hidden="true">
+									<svg fill="currentColor" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.838 8.445c0-.001-.001-.001 0 0l-.003-.004-.001-.001v-.001a.809.809 0 0 0-.235-.228l-9.164-6.08a.834.834 0 0 0-.898 0L2.371 8.214A.786.786 0 0 0 2 8.897v6.16a.789.789 0 0 0 .131.448v.001l.002.002.01.015v.002h.001l.001.001.001.001c.063.088.14.16.226.215l9.165 6.082a.787.787 0 0 0 .448.139.784.784 0 0 0 .45-.139l9.165-6.082a.794.794 0 0 0 .371-.685v-6.16a.793.793 0 0 0-.133-.452zm-9.057-4.172 6.953 4.613-3.183 2.112-3.771-2.536V4.273zm-1.592 0v4.189l-3.771 2.536-3.181-2.111 6.952-4.614zm-7.595 6.098 2.395 1.59-2.395 1.611v-3.201zm7.595 9.311-6.96-4.617 3.195-2.15 3.765 2.498v4.269zm.795-5.653-3.128-2.078 3.128-2.105 3.131 2.105-3.131 2.078zm.797 5.653v-4.27l3.766-2.498 3.193 2.15-6.959 4.618zm7.597-6.11-2.396-1.611 2.396-1.59v3.201z"/></svg>
+								</span>
+								<span class="contact-text">
+									<span class="contact-label">CodePen</span>
+									<span class="contact-value">@shimuraii</span>
+								</span>
+							</a>
+
+						</div>
+					</div>
+				</section>
+
+				<!-- Experience -->
+				<section id="experience" class="mb-10">
+					<div style="padding:20px 20px 22px;">
+						<ol class="relative border-s border-neutral-200 dark:border-neutral-800 mt-4">
+							<!-- Item 1 -->
+							<li class="ms-6 pb-8 last:pb-0">
+								<span class="absolute -start-1.5 mt-2 inline-flex size-3 rounded-full border-2 border-white dark:border-neutral-900 bg-neutral-300 dark:bg-neutral-700"></span>
+								<div class="flex flex-wrap items-center gap-x-3">
+									<h3 class="font-medium tracking-tight">Software Developer Co-op - Raptor Integration</h3>
+									<span class="text-sm opacity-60">Sep 2024 - Sep 2025</span>
+								</div>
+								<p class="mt-1 text-sm opacity-80">• Developed over 5 web pages in an effort to revamp the Raptor Products used in sawmills, leveraging Blazor, C#, Tailwind CSS, SQL, and Git in order to improve interface, usability and data requirements by 50%</p>
+								<p class="mt-1 text-sm opacity-80">• Responsible for solving problems, revising and pushing over 100+ commits and changes on the Company’s GitHub repository in order to fix, update and validate UI and saw mill data on the web pages</p>
+								<p class="mt-1 text-sm opacity-80">• Designed the draft for over 10 different web pages to plan out new features, data structure of the page, and overall interface of the pages, resulting in smooth implementations of the pages</p>
+								<ul class="mt-2 flex flex-wrap gap-1.5">
+									<li class="px-2 py-0.5 text-xs rounded-full border border-neutral-200 dark:border-neutral-800">C#</li>
+									<li class="px-2 py-0.5 text-xs rounded-full border border-neutral-200 dark:border-neutral-800">.NET</li>
+									<li class="px-2 py-0.5 text-xs rounded-full border border-neutral-200 dark:border-neutral-800">Blazor</li>
+									<li class="px-2 py-0.5 text-xs rounded-full border border-neutral-200 dark:border-neutral-800">TailwindCSS</li>
+									<li class="px-2 py-0.5 text-xs rounded-full border border-neutral-200 dark:border-neutral-800">SQL</li>
+								</ul>
+							</li>
+
+							<!-- Item 2 -->
+							<li class="ms-6 pb-8 last:pb-0">
+								<span class="absolute -start-1.5 mt-2 inline-flex size-3 rounded-full border-2 border-white dark:border-neutral-900 bg-neutral-300 dark:bg-neutral-700"></span>
+								<div class="flex flex-wrap items-center gap-x-3">
+									<h3 class="font-medium tracking-tight">Enrollment Assistant - Thompson Rivers University</h3>
+									<span class="text-sm opacity-60">May 2022 - Sep 2022</span>
+								</div>
+								<p class="mt-1 text-sm opacity-80">• Organized and optimized data for 100+ records in Excel by developing Python scripts that would change their names, some student data, and fix un-updated data</p>
+								<p class="mt-1 text-sm opacity-80">• Assisted prospective students through the enrollment process by providing detailed information on programs, admission requirements, and deadlines</p>
+								<ul class="mt-2 flex flex-wrap gap-1.5">
+									<li class="px-2 py-0.5 text-xs rounded-full border border-neutral-200 dark:border-neutral-800">Python</li>
+									<li class="px-2 py-0.5 text-xs rounded-full border border-neutral-200 dark:border-neutral-800">Excel</li>
+								</ul>
+							</li>
+
+							<!-- Item 3 -->
+							<li class="ms-6 pb-8 last:pb-0">
+								<span class="absolute -start-1.5 mt-2 inline-flex size-3 rounded-full border-2 border-white dark:border-neutral-900 bg-neutral-300 dark:bg-neutral-700"></span>
+								<div class="flex flex-wrap items-center gap-x-3">
+									<h3 class="font-medium tracking-tight">Research Assistant - University of British Columbia</h3>
+									<span class="text-sm opacity-60">Jan 2022 - Apr 2022</span>
+								</div>
+								<p class="mt-1 text-sm opacity-80">• Analyzed Statistics Canada COVID-19 Mental Health dataset using RStudio and machine learning models (Bayesian, K-Means, hierarchical clustering), delivering actionable insights to improve psychological evaluations.</p>
+								<ul class="mt-2 flex flex-wrap gap-1.5">
+									<li class="px-2 py-0.5 text-xs rounded-full border border-neutral-200 dark:border-neutral-800">RStudio</li>
+									<li class="px-2 py-0.5 text-xs rounded-full border border-neutral-200 dark:border-neutral-800">Data Analysis</li>
+									<li class="px-2 py-0.5 text-xs rounded-full border border-neutral-200 dark:border-neutral-800">Python</li>
+								</ul>
+							</li>
+
+							<!-- Item 4 -->
+							<li class="ms-6 pb-0 last:pb-0">
+								<span class="absolute -start-1.5 mt-2 inline-flex size-3 rounded-full border-2 border-white dark:border-neutral-900 bg-neutral-300 dark:bg-neutral-700"></span>
+								<div class="flex flex-wrap items-center gap-x-3">
+									<h3 class="font-medium tracking-tight">Undergraduate Teaching Assistant - Thompson Rivers University</h3>
+									<span class="text-sm opacity-60">Sep 2021 - Apr 2022</span>
+								</div>
+								<p class="mt-1 text-sm opacity-80">• Mentored over 50+ 1st and 2nd-year computer science students in foundational course concepts using Java, HTML, CSS, and JavaScript.</p>
+								<ul class="mt-2 flex flex-wrap gap-1.5">
+									<li class="px-2 py-0.5 text-xs rounded-full border border-neutral-200 dark:border-neutral-800">HTML/CSS</li>
+									<li class="px-2 py-0.5 text-xs rounded-full border border-neutral-200 dark:border-neutral-800">Java</li>
+									<li class="px-2 py-0.5 text-xs rounded-full border border-neutral-200 dark:border-neutral-800">Javascript</li>
+								</ul>
+							</li>
+						</ol>
+					</div>
+				</section>
+
+				<!-- Projects -->
+				<section class="mb-10">
+					<div style="padding:20px 20px 22px;">
+						<h2 style="margin-top:0; font-size:22px; font-weight:700;">Projects</h2>
+						<div class="projects-grid">
+							<article class="project-card">
+								<div class="project-body">
+									<h3>IoT Workplace Safety &amp; Security (Cloud)</h3>
+									<p>Cloud-based monitoring platform using AWS (IoT Core, Lambda, Analytics) with a secure user web UI.</p>
+									<div class="project-meta">
+										<span class="project-tag">AWS</span>
+										<span class="project-tag">IoT</span>
+										<span class="project-tag">Serverless</span>
+										<span class="project-tag">PHP</span>
+									</div>
+									<div class="project-actions">
+										<a href="https://github.com/ZionC27/IoT-Workplace-Safety-and-Security--Monitoring-with-Cloud-Processing" target="_blank" rel="noreferrer noopener">View</a>
+									</div>
+								</div>
+							</article>
+
+							<article class="project-card">
+								<div class="project-body">
+									<h3>Computer Science Club’s Website</h3>
+									<p>Developed and implemented part of the first build of the Computer Science Club’s website.</p>
+									<div class="project-meta">
+										<span class="project-tag">TailwindCSS</span>
+										<span class="project-tag">Web Dev</span>
+										<span class="project-tag">NodeJS</span>
+									</div>
+									<div class="project-actions">
+										<a href="https://trucsclub.github.io/" target="_blank" rel="noreferrer noopener">View</a>
+									</div>
+								</div>
+							</article>
+
+							<article class="project-card">
+								<div class="project-body">
+									<h3>Dungeoneer</h3>
+									<p>Team-built dungeon crawler featuring procedural map generation and cohesive multi-discipline collaboration.</p>
+									<div class="project-meta">
+										<span class="project-tag">Game Dev</span>
+										<span class="project-tag">PCG</span>
+										<span class="project-tag">Teamwork</span>
+									</div>
+									<div class="project-actions">
+										<a href="https://darthpackman.itch.io/dungeoneer" target="_blank" rel="noreferrer noopener">View</a>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+				</section>
+			</div>
+		</main>
+
+	</body>
+</html>

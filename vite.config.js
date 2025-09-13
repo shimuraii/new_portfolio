@@ -16,7 +16,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: resolve(__dirname, 'src/index.html'),
-        view3d: resolve(__dirname, 'src/3DView.html'), // or 'src/3dview.html'
+        view3d: resolve(__dirname, 'src/2DView.html'), // or 'src/3dview.html'
       },
     },
   },
