@@ -1,5 +1,5 @@
-import { A as c } from "./App-fS0Hx6k_.js";
-new c();
+import { A as s } from "./App-C_nmQWl7.js";
+new s();
 function i() {
   try {
     return localStorage.getItem("theme");
@@ -21,8 +21,8 @@ function d(e) {
   const t = (n) => {
     if (!n) return;
     n.setAttribute("aria-pressed", e ? "true" : "false");
-    const s = n.querySelector(".sun"), o = n.querySelector(".moon");
-    s && o && (s.classList.toggle("hidden", e), o.classList.toggle("hidden", !e));
+    const o = n.querySelector(".sun"), c = n.querySelector(".moon");
+    o && c && (o.classList.toggle("hidden", e), c.classList.toggle("hidden", !e));
   };
   t(document.getElementById("theme-toggle")), t(document.getElementById("theme-toggle-mobile"));
 }
@@ -41,10 +41,8 @@ r();
 window.addEventListener("DOMContentLoaded", () => {
   a();
   const e = () => {
-    const s = !document.documentElement.classList.contains("dark");
-    d(s), l(s ? "dark" : "light");
-    const o = document.getElementById("popup");
-    o && (o.classList.add("show"), window.setTimeout(() => o.classList.remove("show"), 6e3));
+    const o = !document.documentElement.classList.contains("dark");
+    d(o), l(o ? "dark" : "light");
   }, t = document.getElementById("theme-toggle"), n = document.getElementById("theme-toggle-mobile");
   t && t.addEventListener("click", e), n && n.addEventListener("click", e);
 });
